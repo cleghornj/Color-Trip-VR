@@ -141,4 +141,4 @@ function getAverageRGB(imgEl) {
 }
 alert("wtf");
 genBlocks();
-//calcRoute();
+calcRoute();
