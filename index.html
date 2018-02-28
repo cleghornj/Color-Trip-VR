@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Color Trip</title>
+        <style>
+            html, body { margin: 0; padding: 0; overflow: hidden; }
+        </style>
+        <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuTLLwkFCteq_ZVqLPpZTlyygI0DkXRxU&libraries=geometry"></script>
+        <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
+    </head>
+    <body>
+        <p id="start">Mountain View</p>
+        <p id="end">San Francisco</p>
+        <a-scene>
+            <a-assets>
+                <img id ="i" src ='https://maps.googleapis.com/maps/api/streetview?size=600x300&location=41.403609,2.174448&heading=100&pitch=28&scale=2&key=AIzaSyCuTLLwkFCteq_ZVqLPpZTlyygI0DkXRxU' crossorigin="anonymous">
+            </a-assets>
+            <a-image id= "svim" src="#i" position="0 7 -30" width="60" height="30"></a-image>
+            <a-sky id="sky" src=""></a-sky>
+            <!--a-entity position="0 0 -8" text-geometry="value: A E S T H E T I C"></a-entity-->
+        </a-scene>
+
+    <script type="text/javascript" src="app.js"></script>
+    </body>
+
+</html>
