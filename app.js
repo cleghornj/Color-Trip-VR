@@ -3,19 +3,18 @@ var directionsService = new google.maps.DirectionsService();
 // generates the html for the needed box entities
 function genBlocks() {
 
-    for (h=0; h<450; h++){
+    for (h=0; h<50; h++){
         var box = document.createElement('a-box');
         //var anim = document.createElement('a-animation');
+        box.addEventListener( "mouseenter", function() {box.setAttribute("position",{ x: 0, y:5, z: 0});});
         document.querySelector('a-scene').appendChild(box);
         box.setAttribute('id', 'b'+h);
-        document.getElementById('b'+h).innerHTML = `<a-animation attribute="scale" dur="1500" from="0 0 0" to=".499 .499 .499" easing="ease-in-out-quart" repeat="indefinite"></a-animation>`;
+        document.getElementById('b'+h).innerHTML = `<a-animation attribute="scale" dur="1500" from="0 0 0" to="1 1 1" easing="ease-in-out-quart" repeat="indefinite"></a-animation>`;
     }
 }
 
+function calcRoute(start, end) {
 
-function calcRoute() {
-  var start = document.getElementById('start').textContent;
-  var end = document.getElementById('end').textContent;
   var request = {
     origin: start,
     destination: end,
@@ -33,20 +32,20 @@ function calcRoute() {
                 document.getElementById("i").src = 'https://maps.googleapis.com/maps/api/streetview?size=300x150&location='+lat+','+lng+'&heading=100&pitch=28&scale=2&key=AIzaSyCuTLLwkFCteq_ZVqLPpZTlyygI0DkXRxU';
                 document.querySelector('#svim').setAttribute('material', {src: 'https://maps.googleapis.com/maps/api/streetview?size=300x150&location='+lat+','+lng+'&heading=100&pitch=28&scale=2&key=AIzaSyCuTLLwkFCteq_ZVqLPpZTlyygI0DkXRxU'})
                 rgbCode = getAverageRGB(document.getElementById('i'));
-                console.log(rgbCode);
+                //console.log(rgbCode);
 
                 colorVar = 'rgb('+rgbCode[3].r+','+rgbCode[3].g+','+rgbCode[3].b+')';
                 var boxID =0;
-                for (col=0; col<15; col++){
-                    for (row=0; row<30; row++){
+                for (col=0; col<5; col++){
+                    for (row=0; row<10; row++){
                         box = document.querySelector(`#b${boxID}`)
                         boxColorVar = 'rgb('+rgbCode[0][boxID]+','+rgbCode[1][boxID]+','+rgbCode[2][boxID]+')';
-                        console.log(boxColorVar);
-                        box.setAttribute('position', {x: -7.25+row*.5, y: .25+col*.5, z: -5});
+                        //console.log(boxColorVar);
+                        box.setAttribute('position', {x: -4.5+row, y: .5+col, z: -5});
                         box.setAttribute('scale', {x: 0, y: 0, z: 0});
                         box.setAttribute('material',{ color: boxColorVar});
                         boxID++;
-                        console.log(boxID);
+                        //console.log(boxID);
                     }
 
                 }
@@ -62,10 +61,6 @@ function calcRoute() {
     };
   });
 }
-
-
-
-
 
 function getAverageRGB(imgEl) {
 
@@ -118,8 +113,8 @@ function getAverageRGB(imgEl) {
     redavg = [];
     grnavg = [];
     bluavg = [];
-
-    for (i=0; i<4500; i+=10){
+    console.log(red.length);
+    for (i=0; i<4500; i+=90){
         raccum = 0;
         gaccum = 0;
         baccum = 0;
@@ -135,10 +130,15 @@ function getAverageRGB(imgEl) {
         grnavg.push(~~(gaccum/10));
         bluavg.push(~~(baccum/10));
     }
-
+    console.log(redavg.length);
     return [redavg.reverse(), grnavg.reverse(), bluavg.reverse(), rgb];
 
 }
-alert("wtf");
-genBlocks();
-calcRoute();
+
+function playTrip(){
+
+    genBlocks();
+    calcRoute("mountain view", "san francisco");
+}
+alert("This project is in progress. Please use the WebVR-enabled Firefox browser.");
+playTrip();
