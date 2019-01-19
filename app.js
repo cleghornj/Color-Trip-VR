@@ -4,7 +4,7 @@ var directionsService = new google.maps.DirectionsService();
 function genBlocks() {
 
     for (h=0; h<50; h++){
-        var box = document.createElement('a-box');
+        var box = document.createElement('myModelObj');
         //var anim = document.createElement('a-animation');
         box.addEventListener( "mouseenter", function() {box.setAttribute("position",{ x: 0, y:5, z: 0});});
         document.querySelector('a-scene').appendChild(box);

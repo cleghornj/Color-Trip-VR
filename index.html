@@ -13,7 +13,9 @@
     <body>
         <a-scene>
             <a-assets>
-                <img id ="i" src ='https://maps.googleapis.com/maps/api/streetview?size=600x300&location=41.403609,2.174448&heading=100&pitch=28&scale=2&key=AIzaSyCuTLLwkFCteq_ZVqLPpZTlyygI0DkXRxU' crossorigin="anonymous">
+              <a-asset-item id="myModelObj" src="test_bush.obj"></a-asset-item>
+              <a-asset-item id="myModelMtl" src="test_bush.mtl"></a-asset-item>
+              <img id ="i" src ='https://maps.googleapis.com/maps/api/streetview?size=600x300&location=41.403609,2.174448&heading=100&pitch=28&scale=2&key=AIzaSyCuTLLwkFCteq_ZVqLPpZTlyygI0DkXRxU' crossorigin="anonymous">
             </a-assets>
             <a-image id= "svim" src="#i" position="0 7 -30" width="60" height="30"></a-image>
             <a-sky id="sky" src=""></a-sky>
